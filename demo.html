@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+
+    <button id="upload_button">Subir imagen</button>
+
+    <script
+      src="https://widget.cloudinary.com/v2.0/global/all.js"
+      type="text/javascript"
+    ></script>
+
+    <script>
+      const myWidget = cloudinary.createUploadWidget(
+        {
+          cloudName: "dtbhq7drd",
+          uploadPreset: "upload-image-test",
+        },
+        (error, result) => {
+          if (!error && result && result.event === "success") {
+            console.log("Imagen subida con éxito:", result.info);
+            // Puedes usar result.info.secure_url para obtener el URL de la imagen
+          }
+        }
+      );
+
+      document.getElementById("upload_button").addEventListener(
+        "click",
+        function () {
+          myWidget.open();
+        },
+        false
+      );
+    </script>
+  </body>
+</html>
